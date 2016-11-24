@@ -1,0 +1,50 @@
+﻿class Solution {
+public:
+	/*length 为字符数组str的总容量*/
+	void replaceSpace(char *str,int length) {
+		if (str == NULL )
+		{
+			return;
+		}
+
+		int originalLength = 1;//included '\0'
+		int numOfBlank = 0;
+
+		int i = 0;
+		while (str[i] != '\0') {
+			originalLength++;
+			if (str[i] == ' ') {
+				numOfBlank++;
+			}
+			i++;
+		}
+
+		int newLength = originalLength + numOfBlank * 2;
+		if (newLength > length)
+			return;
+
+		char *pOri = str + i;
+		char *pNew = pOri + 2 * numOfBlank;
+
+		while (pOri != pNew) {
+			if (*pOri != ' ') {
+				*pNew = *pOri;
+				pNew--;
+
+			}
+			else {
+				*pNew = '0';
+				pNew--;
+				*pNew = '2';
+				pNew--;
+				*pNew = '%';
+				pNew--;
+			}
+			pOri--;
+		}
+
+		pNew = NULL;
+		pOri = NULL;
+
+	}
+};
